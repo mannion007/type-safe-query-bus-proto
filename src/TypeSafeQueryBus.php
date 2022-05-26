@@ -13,8 +13,7 @@ use Lendable\TypeSafeBusProto\QueryResult\QueryResult;
 interface TypeSafeQueryBus
 {
     /**
-     * @param key-of<Queries::MAP> $query
-     * @return Queries::MAP[T]
+     * @return QueryResult of Queries::MAP[T]
      */
     public function dispatch(Query $query): QueryResult;
 }
