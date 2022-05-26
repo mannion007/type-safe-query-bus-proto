@@ -2,7 +2,8 @@
     "name": "lendable/type-safe-bus-proto",
     "autoload": {
         "psr-4": {
-            "Lendable\\TypeSafeBusProto\\": "src/"
+            "Lendable\\TypeSafeBusProto\\": "src/",
+            "Lendable\\Stan\\": "stan/"
         }
     },
     "authors": [

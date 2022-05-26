@@ -9,11 +9,7 @@ use Lendable\TypeSafeBusProto\Query\Query;
 use Lendable\TypeSafeBusProto\QueryResult\AccountByAccountIdResult;
 use Lendable\TypeSafeBusProto\QueryResult\QueryResult;
 
-/**
- * @phpstan-template T of Query
- * @phpstan-implements TypeSafeQueryBus<T>
- */
-final class InMemoryTypeSafeQueryBus implements TypeSafeQueryBus
+final class InMemoryQueryBus implements QueryBus
 {
     public function dispatch(Query $query): QueryResult
     {
