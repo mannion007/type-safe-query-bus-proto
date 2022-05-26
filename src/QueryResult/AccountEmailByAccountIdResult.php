@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Lendable\TypeSafeBusProto\QueryResult;
 
-final class AccountEmailByAccountIdResult implements QueryResult
+final class AccountEmailByAccountIdResult
 {
     private string $id;
 

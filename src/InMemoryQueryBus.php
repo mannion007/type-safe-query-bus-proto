@@ -7,11 +7,10 @@ namespace Lendable\TypeSafeBusProto;
 use Lendable\TypeSafeBusProto\Query\AccountByAccountIdQuery;
 use Lendable\TypeSafeBusProto\Query\Query;
 use Lendable\TypeSafeBusProto\QueryResult\AccountByAccountIdResult;
-use Lendable\TypeSafeBusProto\QueryResult\QueryResult;
 
 final class InMemoryQueryBus implements QueryBus
 {
-    public function dispatch(Query $query): QueryResult
+    public function dispatch(Query $query): object
     {
         if ($query instanceof AccountByAccountIdQuery) {
             return new AccountByAccountIdResult($query->id(), new \DateTimeImmutable());

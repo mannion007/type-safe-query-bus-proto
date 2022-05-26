@@ -6,7 +6,6 @@ namespace Lendable\Stan;
 
 use Lendable\TypeSafeBusProto\Queries;
 use Lendable\TypeSafeBusProto\QueryBus;
-use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
