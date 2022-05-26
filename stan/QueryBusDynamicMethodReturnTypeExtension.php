@@ -4,18 +4,15 @@ declare(strict_types=1);
 
 namespace Lendable\Stan;
 
-use Lendable\TypeSafeBusProto\Queries;
 use Lendable\TypeSafeBusProto\QueryBus;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\PhpDoc\TypeStringResolver;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\ShouldNotHappenException;
-use PHPStan\Type\ArrayType;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
-use PHPStan\Type\StringType;
 use PHPStan\Type\Type;
 
 final class QueryBusDynamicMethodReturnTypeExtension implements DynamicMethodReturnTypeExtension
@@ -54,10 +51,6 @@ final class QueryBusDynamicMethodReturnTypeExtension implements DynamicMethodRet
         $resolved = $this->map[$type->getClassName()] ?? null;
         if ($resolved === null) {
             return new MixedType();
-        }
-
-        if (\class_exists($resolved)) {
-            return new ObjectType($resolved);
         }
 
         return $this->typeStringResolver->resolve($resolved);
