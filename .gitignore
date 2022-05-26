@@ -1,0 +1,15 @@
+/vendor
+.env
+/var/logs/*
+!/var/logs
+!/var/logs/.gitkeep
+/var/cache/*
+!/var/cache
+!/var/cache/.gitkeep
+/.deptrac.cache
+/.php_cs.cache
+/composer.phar
+phpunit.xml
+.phpunit.result.cache
+/*.pdf
+/junit

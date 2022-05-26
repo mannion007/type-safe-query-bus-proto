@@ -1,0 +1,22 @@
+{
+    "name": "lendable/type-safe-bus-proto",
+    "autoload": {
+        "psr-4": {
+            "Lendable\\TypeSafeBusProto\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "James Mannion",
+            "email": "james.mannion@lendable.co.uk"
+        }
+    ],
+    "require": {
+        "phpstan/phpstan": "^1.7"
+    },
+    "scripts": {
+        "phpstan:src": [
+            "phpstan analyze -l max --ansi index.php src/"
+        ]
+    }
+}
