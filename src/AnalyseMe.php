@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Lendable\TypeSafeBusProto;
 
+use Lendable\TypeSafeBusProto\Query\AccountArrayByAccountIdQuery;
 use Lendable\TypeSafeBusProto\Query\AccountByAccountIdQuery;
 use Lendable\TypeSafeBusProto\Query\AccountEmailByAccountIdQuery;
 use Lendable\TypeSafeBusProto\Query\UnmappedQuery;
@@ -22,6 +23,8 @@ class AnalyseMe
     {;
         dumpType($this->queryBus->dispatch(new AccountByAccountIdQuery('id')));
         dumpType($this->queryBus->dispatch(new AccountEmailByAccountIdQuery('id')));
+
+        dumpType($this->queryBus->dispatch(new AccountArrayByAccountIdQuery('id')));
 
         dumpType($this->queryBus->dispatch(new UnmappedQuery())); //Mixed
     }

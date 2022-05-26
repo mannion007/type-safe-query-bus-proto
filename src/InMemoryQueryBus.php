@@ -10,7 +10,7 @@ use Lendable\TypeSafeBusProto\QueryResult\AccountByAccountIdResult;
 
 final class InMemoryQueryBus implements QueryBus
 {
-    public function dispatch(Query $query): object
+    public function dispatch(Query $query): mixed
     {
         if ($query instanceof AccountByAccountIdQuery) {
             return new AccountByAccountIdResult($query->id(), new \DateTimeImmutable());
