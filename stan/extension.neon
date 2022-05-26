@@ -1,4 +1,13 @@
+parameters:
+    query-bus:
+        map: null
+
+parametersSchema:
+	query-bus: structure([
+		map: schema(string())
+	])
+
 services:
     -
-        class: Lendable\Stan\QueryBusDynamicMethodReturnTypeExtension
+        factory: Lendable\Stan\QueryBusDynamicMethodReturnTypeExtension(%query-bus.map%)
         tags: [phpstan.broker.dynamicMethodReturnTypeExtension]

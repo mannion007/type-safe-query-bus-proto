@@ -8,17 +8,30 @@ use Lendable\TypeSafeBusProto\Queries;
 use Lendable\TypeSafeBusProto\QueryBus;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
+use PHPStan\PhpDoc\TypeStringResolver;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\ShouldNotHappenException;
+use PHPStan\Type\ArrayType;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
+use PHPStan\Type\StringType;
 use PHPStan\Type\Type;
 
 final class QueryBusDynamicMethodReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {
-    public function __construct()
+    /**
+     * @var array<class-string, string>
+     */
+    private array $map;
+
+    public function __construct(string $mapFile, private TypeStringResolver $typeStringResolver)
     {
+        if (!\file_exists($mapFile)) {
+            throw new \InvalidArgumentException(\sprintf('Queries map file not found at path %s', $mapFile));
+        }
+
+        $this->map = require_once $mapFile;
     }
 
     public function getClass(): string
@@ -38,11 +51,15 @@ final class QueryBusDynamicMethodReturnTypeExtension implements DynamicMethodRet
             throw new ShouldNotHappenException('Expected an object');
         }
 
-        $resolved = Queries::MAP[$type->getClassName()] ?? null;
+        $resolved = $this->map[$type->getClassName()] ?? null;
         if ($resolved === null) {
             return new MixedType();
         }
 
-        return new ObjectType($resolved);
+        if (\class_exists($resolved)) {
+            return new ObjectType($resolved);
+        }
+
+        return $this->typeStringResolver->resolve($resolved);
     }
 }
