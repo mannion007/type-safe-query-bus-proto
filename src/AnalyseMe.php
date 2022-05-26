@@ -20,11 +20,19 @@ class AnalyseMe
     }
 
     public function go(): void
-    {;
-        dumpType($this->queryBus->dispatch(new AccountByAccountIdQuery('id')));
-        dumpType($this->queryBus->dispatch(new AccountEmailByAccountIdQuery('id')));
+    {
+        $result = $this->queryBus->dispatch(new AccountByAccountIdQuery('id'));
+        $openedAt = $result->openedAt();
+        dumpType($result);
 
-        dumpType($this->queryBus->dispatch(new AccountArrayByAccountIdQuery('id')));
+
+        $result = $this->queryBus->dispatch(new AccountEmailByAccountIdQuery('id'));
+        $email = $result->email();
+        dumpType($result);
+
+        $result = $this->queryBus->dispatch(new AccountArrayByAccountIdQuery('id'));
+        $id = $result['id'];
+        dumpType($result);
 
         dumpType($this->queryBus->dispatch(new UnmappedQuery())); //Mixed
     }
