@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-use Lendable\TypeSafeBusProto\InMemoryTypeSafeQueryBus;
+use Lendable\TypeSafeBusProto\InMemoryQueryBus;
 use Lendable\TypeSafeBusProto\Query\AccountByAccountIdQuery;
-use Lendable\TypeSafeBusProto\TypeSafeQueryBus;
+use Lendable\TypeSafeBusProto\QueryBus;
 
 require_once (__DIR__ . '/vendor/autoload.php');
 
 /**
- * @var TypeSafeQueryBus<AccountByAccountIdQuery> $queryBus
+ * @var QueryBus<AccountByAccountIdQuery> $queryBus
  */
-$queryBus = new InMemoryTypeSafeQueryBus();
+$queryBus = new InMemoryQueryBus();
 
 $result = $queryBus->dispatch(new AccountByAccountIdQuery('1'));
 

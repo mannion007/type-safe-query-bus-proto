@@ -1,0 +1,6 @@
+includes:
+  - stan/extension.neon
+
+parameters:
+  level: max
+  tmpDir: var/cache/phpstan
