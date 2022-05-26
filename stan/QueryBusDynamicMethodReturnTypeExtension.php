@@ -11,6 +11,7 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\ShouldNotHappenException;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
+use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 
@@ -39,7 +40,7 @@ final class QueryBusDynamicMethodReturnTypeExtension implements DynamicMethodRet
 
         $resolved = Queries::MAP[$type->getClassName()] ?? null;
         if ($resolved === null) {
-            throw new ShouldNotHappenException('Missing entry for query '.$type->getClassName());
+            return new MixedType();
         }
 
         return new ObjectType($resolved);
