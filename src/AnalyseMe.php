@@ -23,7 +23,6 @@ class AnalyseMe
         dumpType($this->queryBus->dispatch(new AccountByAccountIdQuery('id')));
         dumpType($this->queryBus->dispatch(new AccountEmailByAccountIdQuery('id')));
 
-//        uncomment to see stan explode with message
-//        $this->queryBus->dispatch(new UnmappedQuery());
+        dumpType($this->queryBus->dispatch(new UnmappedQuery())); //Mixed
     }
 }
