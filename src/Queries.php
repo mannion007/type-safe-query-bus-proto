@@ -9,12 +9,11 @@ use Lendable\TypeSafeBusProto\Query\AccountEmailByAccountIdQuery;
 use Lendable\TypeSafeBusProto\Query\Query;
 use Lendable\TypeSafeBusProto\QueryResult\AccountByAccountIdResult;
 use Lendable\TypeSafeBusProto\QueryResult\AccountEmailByAccountIdResult;
-use Lendable\TypeSafeBusProto\QueryResult\QueryResult;
 
 final class Queries
 {
     /**
-     * @var array<class-string<Query>, class-string<QueryResult>>
+     * @var array<class-string<Query>, mixed>
      */
     public const MAP = [
         AccountByAccountIdQuery::class => AccountByAccountIdResult::class,
